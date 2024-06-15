@@ -14,7 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->string('name_recipe')->nullable(true);
             $table->boolean('is_delivered')->nullable(false)->default(true);
-            $table->timestamps();
+            
+            $table->timestamp("created_at")->useCurrent();
+            $table->timestamp("updated_at")->useCurrent()->useCurrentOnUpdate();
         });
     }
 

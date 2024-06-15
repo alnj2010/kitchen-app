@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
-            $table->string('name_recipe')->nullable(false);
-            $table->timestamps();
+            $table->string('name_recipe')->nullable(false)->unique();
+            
+            $table->timestamp("created_at")->useCurrent();
+            $table->timestamp("updated_at")->useCurrent()->useCurrentOnUpdate();
         });
     }
 
