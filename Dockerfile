@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libonig-dev \
     graphviz \
-
     && docker-php-ext-configure gd \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install pdo_mysql \
@@ -23,4 +22,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 COPY . .
-RUN composer install
+RUN composer install 
+
+CMD php artisan serve --host=0.0.0.0
+EXPOSE 8000
