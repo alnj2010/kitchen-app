@@ -12,7 +12,10 @@ return new class extends Migration {
     {
         Schema::create('orders_history', function (Blueprint $table) {
             $table->id();
-            $table->string('name_recipe')->nullable(true);
+
+            $table->unsignedBigInteger('recipe_id');
+            $table->foreign('recipe_id')->references('id')->on('recipes');
+            
             $table->boolean('is_delivered')->nullable(false)->default(true);
             
             $table->timestamp("created_at")->useCurrent();
