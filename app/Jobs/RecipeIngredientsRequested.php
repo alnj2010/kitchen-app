@@ -11,7 +11,8 @@ use Illuminate\Queue\SerializesModels;
 class RecipeIngredientsRequested implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    public $tries = 100;
+    public $maxExceptions = 2;
     /**
      * Create a new job instance.
      */
