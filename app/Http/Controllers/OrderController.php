@@ -19,8 +19,14 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $recipe_model = Recipe::with("ingredients")->inRandomOrder()->first();
-        $recipe = [
+
+        $order_model = Order::create([
             'recipe_id' => $recipe_model->id,
+            'is_delivered' => false,
+        ]);
+
+        $order = [
+            'id' => $order_model->id,
             'ingredients' => array_map(
                 fn($value) => [
                     'name' => $value["name_ingredient"],
@@ -30,12 +36,9 @@ class OrderController extends Controller
             )
         ];
 
-        Order::create([
-            'recipe_id' => $recipe['recipe_id'],
-            'is_delivered' => false,
-        ]);
 
-        RecipeIngredientsRequested::dispatch($recipe);
+
+        RecipeIngredientsRequested::dispatch($order);
 
         return response(["message" => "order created"], Response::HTTP_CREATED);
     }

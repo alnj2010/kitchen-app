@@ -16,11 +16,11 @@ class RecipeIngredientsRequested implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    private $recipeIngredients;
-     public function __construct($recipeIngredients) // TODO typing
+    private $order;
+     public function __construct($order) // TODO typing
     {
         $this->onQueue('requested_ingredients');
-        $this->recipeIngredients = $recipeIngredients;
+        $this->order = $order;
     }
 
     /**

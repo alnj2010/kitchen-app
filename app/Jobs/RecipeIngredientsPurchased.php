@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -13,11 +14,11 @@ class RecipeIngredientsPurchased implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private $recipeIngredients;
-    public function __construct($recipeIngredients) // TODO typing
+    private $order;
+    public function __construct($order) // TODO typing
     {
         $this->onQueue('purchased_ingredients');
-        $this->recipeIngredients = $recipeIngredients;
+        $this->order = $order;
     }
 
     /**
@@ -25,7 +26,9 @@ class RecipeIngredientsPurchased implements ShouldQueue
      */
     public function handle(): void
     {
-        //echo ('Cooking ...' . $this->recipeIngredients['recipe_id']);
-        Log::debug('Cooking ...', $this->recipeIngredients);
+        $order_model = Order::find($this->order["id"]);
+        $order_model->is_delivered = true;
+        $order_model->save();
+
     }
 }
