@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class OrderHistory extends Model
+class Order extends Model
 {
     use HasFactory;
 
@@ -15,5 +15,6 @@ class OrderHistory extends Model
     {
         return $this->belongsTo(Recipe::class);
     }
-    protected $table = 'orders_history';
+
+    protected $fillable = ['recipe_id', 'is_delivered'];
 }

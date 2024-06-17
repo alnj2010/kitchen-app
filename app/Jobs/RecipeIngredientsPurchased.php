@@ -25,7 +25,7 @@ class RecipeIngredientsPurchased implements ShouldQueue
      */
     public function handle(): void
     {
-        //echo ('Cooking ...' . $this->recipeIngredients['id_recipe']);
+        //echo ('Cooking ...' . $this->recipeIngredients['recipe_id']);
         Log::debug('Cooking ...', $this->recipeIngredients);
     }
 }
