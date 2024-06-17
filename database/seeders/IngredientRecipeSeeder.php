@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\IngredientsRecipes;
+use App\Models\IngredientRecipe;
 use Illuminate\Database\Seeder;
 
-class IngredientsRecipesSeeder extends Seeder
+class IngredientRecipeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -28,6 +28,6 @@ class IngredientsRecipesSeeder extends Seeder
 
         }
 
-        IngredientsRecipes::insert($records);
+        IngredientRecipe::insert($records);
     }
 }
