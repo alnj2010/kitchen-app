@@ -20,5 +20,5 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/recipes', function (Request $request) {
 
-    return Recipe::with("ingredients")->paginate(6);
+    return Recipe::with("ingredients")->simplePaginate(6);
 });
