@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -9,4 +10,4 @@ Route::apiResource('orders', OrderController::class)->only([
     'store'
 ]);
 
-Route::apiResource('recipes', OrderController::class)->only(['index']);
+Route::apiResource('recipes', RecipeController::class)->only(['index']);

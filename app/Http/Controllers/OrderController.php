@@ -20,7 +20,7 @@ class OrderController extends Controller
             $query = $query->where("is_delivered", $status === "delivered");
         }
 
-        return $query->paginate($per_page);
+        return $query->orderBy("id","desc")->paginate($per_page);
     }
 
     public function store(Request $request)
