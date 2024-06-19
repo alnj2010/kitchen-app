@@ -13,7 +13,14 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $status = $request->query('status');
-        return Order::with("recipe")->where("is_delivered", $status === "delivered")->simplePaginate(10);
+        $per_page = $request->query('perPage') ?? 10;
+        $query = Order::with("recipe");
+
+        if ($status == 'delivered' || $status == 'pending') {
+            $query = $query->where("is_delivered", $status === "delivered");
+        }
+
+        return $query->paginate($per_page);
     }
 
     public function store(Request $request)
