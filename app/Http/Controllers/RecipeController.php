@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
-    
-    public function index(Request $request){
-        return Recipe::with("ingredients")->simplePaginate(6);
+
+    public function index(Request $request)
+    {
+        $TOTAL_OF_RECIPES = 6;
+        return Recipe::with("ingredients")->simplePaginate($TOTAL_OF_RECIPES);
     }
 }
