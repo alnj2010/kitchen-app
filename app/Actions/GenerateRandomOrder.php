@@ -21,7 +21,8 @@ class GenerateRandomOrder
             'ingredients' => array_map(
                 fn($value) => [
                     'name' => $value["name_ingredient"],
-                    'quantity' => $value["pivot"]["quantity"]
+                    'quantity' => $value["pivot"]["quantity"],
+                    'was_obtained' => false
                 ],
                 $recipe->ingredients->toArray()
             )
